@@ -184,8 +184,8 @@ Response:
 
 ---
 
-### Features coming soon:
-
+### Todo List:
+[ ] SSL Cert
 [ ] Allow users to "follow" specific accounts
 [ ] A Feed endpoint that shows posts from only the accounts that the user follows
 [ ] Allow a post to be edited or deleted
