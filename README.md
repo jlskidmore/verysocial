@@ -185,10 +185,10 @@ Response:
 ---
 
 ### Todo List:
-[ ] SSL Cert
-[ ] Allow users to "follow" specific accounts
-[ ] A Feed endpoint that shows posts from only the accounts that the user follows
-[ ] Allow a post to be edited or deleted
-[ ] Allow a comment to be edited or deleted
-[ ] Add email address requirement
-[ ] Email verification
+[✅] SSL Cert  
+[  ] Allow users to "follow" specific accounts  
+[  ] A Feed endpoint that shows posts from only the accounts that the user follows  
+[  ] Allow a post to be edited or deleted  
+[  ] Allow a comment to be edited or deleted  
+[  ] Add email address requirement  
+[  ] Email verification  
