@@ -23,13 +23,13 @@ var checkAuth = (req, res, next) => {
   }
   next();
 };
-/* var corsOptions = {
-  origin: "http://localhost:5000",
+var corsOptions = {
+  origin: "http://localhost",
   credentials: true,
-}; */
+};
 
-//app.use(cors(corsOptions));
-app.use(cors());
+app.use(cors(corsOptions));
+//app.use(cors());
 
 // Use Body Parser
 app.use(bodyParser.json());

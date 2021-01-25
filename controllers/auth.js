@@ -60,12 +60,7 @@ module.exports = (app) => {
             expiresIn: "60 days",
           });
           // Set a cookie and redirect to root
-          res.cookie("nToken", token, {
-            maxAge: 900000,
-            httpOnly: true,
-            sameSite: "strict",
-            secure: false,
-          });
+          res.cookie('nToken', token, { maxAge: 900000, httpOnly: true, secure: false});
           res.status(200).send({ message: "You've been logged in!" });
         });
       })
