@@ -10,7 +10,6 @@ const cors = require("cors");
 port = process.env.PORT;
 
 var checkAuth = (req, res, next) => {
-  //console.log("Checking authentication");
   if (
     typeof req.cookies.nToken === "undefined" ||
     req.cookies.nToken === null
@@ -62,6 +61,7 @@ require("./data/db");
 require("./controllers/posts")(app);
 require("./controllers/comments.js")(app);
 require("./controllers/auth.js")(app);
+require("./controllers/follow.js")(app);
 
 // start server
 app.listen(port, () => {

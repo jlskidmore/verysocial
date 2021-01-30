@@ -4,7 +4,7 @@ const Post = require("../models/posts");
 module.exports = function (app) {
   // CREATE Comment
   app.post("/posts/:id/comments", function (req, res) {
-    if (req.user){
+    if (req.user) {
       const comment = new Comment(req.body);
       comment.author = req.user._id;
       comment
@@ -21,7 +21,7 @@ module.exports = function (app) {
         })
         .catch((err) => {
           console.log(err);
-          res.send("There was an error adding your comment :(")
+          res.send("There was an error adding your comment :(");
         });
     } else {
       res.send("Login to add a comment.");
@@ -33,15 +33,21 @@ module.exports = function (app) {
   app.get("/posts/:id/comments", (req, res) => {
     if (req.user) {
       Post.findOne({ _id: req.params.id })
-        .populate("comments")
+        .populate({
+          path: "comments",
+          populate: {
+            path: "author",
+          },
+        })
+        .populate("author")
         .lean()
         .then((post) => {
-          var comments = post['comments']
+          var comments = post["comments"];
           res.json({ comments });
         })
         .catch((err) => {
           console.log(err.message);
-          res.send("There was an error fetching comments :(")
+          res.send("There was an error fetching comments :(");
         });
     } else {
       res.send("You must be logged in to view posts.");

@@ -2,8 +2,7 @@ const Post = require("../models/posts");
 const User = require("../models/user");
 
 module.exports = (app) => {
-
-  app.get("/", (req,res)=>{
+  app.get("/", (req, res) => {
     res.send("Hello there!");
   });
   // CREATE
@@ -25,7 +24,7 @@ module.exports = (app) => {
         })
         .catch((err) => {
           console.log(err.message);
-          res.send("There was an error in creating your post :(")
+          res.send("There was an error in creating your post :(");
         });
     } else {
       res.send("Login to make a post!");
@@ -33,19 +32,28 @@ module.exports = (app) => {
     }
   });
 
-  // GET ALL POSTS
+  // GET ALL POSTS FROM FOLLOWING ("FEED")
   app.get("/posts", (req, res) => {
     if (req.user) {
-      Post.find({})
-        .populate("author")
-        .populate("comments")
-        .lean()
-        .then((posts) => {
-          res.json({ posts });
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
+      User.findById({ _id: req.user._id }).then((user) => {
+        var follow = user["following"];
+
+        Post.find({ author: { $in: follow } })
+          .populate("author", "username")
+          .populate({
+            path: "comments",
+            populate: {
+              path: "author",
+            },
+          })
+          .lean()
+          .then((posts) => {
+            res.json({ posts });
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      });
     } else {
       res.send("You must be logged in to view posts.");
       return res.status(401);
@@ -76,7 +84,6 @@ module.exports = (app) => {
     if (req.user) {
       Post.findByIdAndUpdate({ _id: req.params.id })
         .then((post) => {
-          //console.log(req.user._id);
           if (post.likes.includes(req.user._id)) {
             post.likes.pull(req.user);
             res.send(`REMOVED a like from ${req.user._id}` + post.likes);

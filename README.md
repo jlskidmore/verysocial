@@ -2,7 +2,7 @@
 
 A REST API for a social media clone. Provides various endpoints for creating an account, signing in, creating and liking a post, adding a comment to a post, etc. Built with NodeJS, Express, and MongoDB.
 
-**URL**: http://api.verysocial.loganskidmore.dev
+**URL**: https://api.verysocial.loganskidmore.dev
 
 ## Open Endpoints
 
@@ -68,7 +68,7 @@ Response:
 
 ---
 
-**Returns all posts : `GET /posts`**
+**Returns all posts for accounts that the user follows: `GET /posts`**
 Response:
 
 ```json
@@ -185,10 +185,11 @@ Response:
 ---
 
 ### Todo List:
+
 [✅] SSL Cert  
-[  ] Allow users to "follow" specific accounts  
-[  ] A Feed endpoint that shows posts from only the accounts that the user follows  
-[  ] Allow a post to be edited or deleted  
-[  ] Allow a comment to be edited or deleted  
-[  ] Add email address requirement  
-[  ] Email verification  
+[✅] Allow users to "follow" specific accounts  
+[✅] An endpoint that shows posts from only the accounts that the user follows  
+[ ] Allow a post to be edited or deleted  
+[ ] Allow a comment to be edited or deleted  
+[ ] Add email address requirement  
+[ ] Email verification
